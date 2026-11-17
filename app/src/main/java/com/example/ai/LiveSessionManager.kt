@@ -1,5 +1,6 @@
 package com.example.ai
 
+import android.content.Context
 import android.util.Log
 import com.example.audio.AudioStreamer
 import com.google.firebase.Firebase
@@ -49,6 +50,7 @@ enum class JarvisConnectionState {
  */
 @OptIn(PublicPreviewAPI::class)
 class LiveSessionManager(
+    private val appContext: Context,
     private val scope: CoroutineScope,
     private val audioStreamer: AudioStreamer,
     private val onToolCall: suspend (FunctionCallPart) -> FunctionResponsePart,
@@ -60,6 +62,11 @@ class LiveSessionManager(
     }
 
     private val liveModel by lazy {
+        if (!ensureFirebaseInitialized(appContext)) {
+            throw IllegalStateException(
+                "Firebase is not configured in this APK build. Ensure app/google-services.json is included before building."
+            )
+        }
         Firebase.ai(backend = GenerativeBackend.googleAI()).liveModel(
             modelName = JarvisPersona.MODEL_NAME,
             generationConfig = liveGenerationConfig {
@@ -94,6 +101,11 @@ class LiveSessionManager(
         scope.launch(Dispatchers.IO) {
             _connectionState.value = JarvisConnectionState.CONNECTING
             try {
+                if (!ensureFirebaseInitialized(appContext)) {
+                    throw IllegalStateException(
+                        "Firebase is not configured in this APK build. Ensure app/google-services.json is included before building."
+                    )
+                }
                 val liveSession = withTimeout(CONNECT_TIMEOUT_MS) {
                     val resumption = activeSessionHandle?.let { SessionResumptionConfig(it) }
                         ?: SessionResumptionConfig()

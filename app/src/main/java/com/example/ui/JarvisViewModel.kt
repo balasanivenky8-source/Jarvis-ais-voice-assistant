@@ -52,6 +52,7 @@ class JarvisViewModel(
 
     private val audioStreamer = AudioStreamer(viewModelScope)
     private val sessionManager = LiveSessionManager(
+        appContext = application,
         scope = viewModelScope,
         audioStreamer = audioStreamer,
         onToolCall = ::executeFunctionCall,

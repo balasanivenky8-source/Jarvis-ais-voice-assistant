@@ -5,10 +5,13 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.core.app.ApplicationProvider
+import com.example.ai.ensureFirebaseInitialized
 import com.example.ui.JarvisScreen
 import com.example.ui.JarvisUiState
 import com.example.ui.theme.JarvisTheme
+import com.google.firebase.FirebaseApp
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,6 +30,14 @@ class ExampleRobolectricTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val appName = context.getString(R.string.app_name)
         assertEquals("Jarvis", appName)
+    }
+
+    @Test
+    fun `firebase initializes from google services resources`() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val initialized = ensureFirebaseInitialized(context)
+        assertTrue(initialized)
+        assertTrue(FirebaseApp.getApps(context).isNotEmpty())
     }
 
     @Test
