@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Jarvis</string>
+    <string name="hud_brand_label">JARVIS // LIVE</string>
+    <string name="state_disconnected">STANDBY</string>
+    <string name="state_connecting">LINKING</string>
+    <string name="state_listening">LISTENING</string>
+    <string name="state_speaking">SPEAKING</string>
+    <string name="mic_button_connect_cd">Connect voice link with Jarvis</string>
+    <string name="mic_button_disconnect_cd">Disconnect voice link with Jarvis</string>
+    <string name="camera_vision_enable_cd">Enable camera vision</string>
+    <string name="camera_vision_disable_cd">Disable camera vision</string>
+    <string name="camera_flip_cd">Switch front and back camera</string>
+    <string name="screen_vision_enable_cd">Enable screen vision</string>
+    <string name="screen_vision_disable_cd">Disable screen vision</string>
+    <string name="camera_eyes_label">CAMERA EYES</string>
+    <string name="screen_eyes_label">SCREEN EYES</string>
+    <string name="screen_capture_channel_name">Jarvis Screen Vision</string>
+    <string name="screen_capture_notif_title">Jarvis Screen Eyes Active</string>
+    <string name="screen_capture_notif_body">Streaming live screen context to Jarvis</string>
+    <string name="hint_tap_to_talk">TAP CORE TO CONNECT</string>
+    <string name="hint_connecting">CALIBRATING VOICE LINK</string>
+    <string name="hint_listening">VOICE LINK OPEN</string>
+    <string name="hint_speaking">JARVIS ON AIR</string>
+    <string name="permission_mic_required">Microphone permission is required for live voice link</string>
+    <string name="permission_camera_required">Camera permission is required for camera vision</string>
+    <string name="screen_vision_denied">Screen capture permission was cancelled</string>
+</resources>
